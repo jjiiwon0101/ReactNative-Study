@@ -1,11 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View>
+        <Text>다른 텍스트 입니다!!!</Text>
+      </View>
+      <Text style={{margin: 20, borderWidth: 2, borderColor: 'skyblue', padding: 10}}>Hello World(p≧w≦q)</Text>
+      <Button title='눌러보세요!' />
     </View>
   );
 }
