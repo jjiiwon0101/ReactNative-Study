@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
+import {
+  Button,
+  Image,
+  Modal,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 
 const GoalInput = (props) => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -14,17 +21,27 @@ const GoalInput = (props) => {
     props.onAddGoal(enteredGoalText);
     setEnteredGoalText("");
   }
-
   return (
-    <Modal>
+    <Modal visible={props.visible} animationType='slide'>
       <View style={styles.inputContainer}>
+        <Image
+          style={styles.image}
+          source={require("../assets/sanrio-cinnamoroll-bow-512x512.png")}
+        />
         <TextInput
           style={styles.textInput}
           placeholder='할 일을 입력하세요!'
           onChangeText={goalInputHandler}
           value={enteredGoalText}
         />
-        <Button title='할 일 추가하기' onPress={addGoalHandler} />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button title='할 일 추가하기' onPress={addGoalHandler} />
+          </View>
+          <View style={styles.button}>
+            <Button title='취소' onPress={props.onCancle} color='#EC407A' />
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -35,18 +52,35 @@ export default GoalInput;
 const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    // flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
     marginBottom: 24,
+    padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
+    //backgroundColor: "#311b6b",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "70%",
-    marginRight: 8,
+    borderColor: "#03A9F4",
+    backgroundColor: "#E1F5FE",
+    color: "#0277BD",
+    borderRadius: 6,
+    width: "100%",
     padding: 8,
+  },
+  buttonContainer: {
+    marginTop: 16,
+    flexDirection: "row",
+  },
+  button: {
+    width: "30%",
+    marginHorizontal: 8,
   },
 });
